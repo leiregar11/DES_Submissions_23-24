@@ -1,0 +1,23 @@
+<?php
+
+    class Runner{
+        private $name;
+        private $code;
+        private $times=[];
+
+
+        public function addRace($time){
+            try{
+                if(count($times)<5){
+
+                }
+                else{
+                    throw new Exception ("The runner has exceeded the limit of races.")
+                }
+
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
+        }
+    }
+?>
