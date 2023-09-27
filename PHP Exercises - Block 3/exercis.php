@@ -25,11 +25,11 @@ class Runner{
 
     public function addRace($time) {
         if (count($this->races) >= 5) {
-            throw new Exception("Runner already has 5 races.\n");
+            throw new Exception("Runner already has 5 races.<br>");
         }
 
         if ($time < 5) {
-            throw new Exception("Race time must be at least 5 seconds.\n");
+            throw new Exception("Race time must be at least 5 seconds.<br>");
         }
 
         $this->races[] = $time;
@@ -67,9 +67,9 @@ class Competition{
         }
     
         if ($contRaces > 0) {
-            return "Average time of the 1st race: " . ($sumRaces / $contRaces) . " seconds\n";
+            return "Average time of the 1st race: " . ($sumRaces / $contRaces) . " seconds<br>";
         } else {
-            return "No runners have completed a race.\n";
+            return "No runners have completed a race.<br>";
         }
     }
 
@@ -87,7 +87,7 @@ class Competition{
                 }
             }
         }
-        return "Quickest runner: $faster\n";
+        return "Quickest runner: $faster<br>";
     }
 
     public function getSlowRunners() {
@@ -103,7 +103,7 @@ class Competition{
             }
         }
 
-        return "Runners with more than 2 races > 15 seconds: " . implode(', ', $runnersMore15s) . "\n";
+        return "Runners with more than 2 races > 15 seconds: " . implode(', ', $runnersMore15s) . "<br>";
     }
 
     public function getRunnersWithNameEndingE() {
@@ -116,7 +116,7 @@ class Competition{
             }
         }
 
-        return "Runners with names ending in 'e': " . implode(', ', $runnersWithE) . "\n";
+        return "Runners with names ending in 'e': " . implode(', ', $runnersWithE) . "<br>";
     }
 }
 
@@ -133,14 +133,13 @@ try {
     $runner1->addRace(20);
     $runner1->addRace(30);
     $runner1->addRace(5);
-    // Uncommented this line (will throw an exception due to < 5 seconds)
-    // $runner1->addRace(40); // Commented this line to avoid exceeding 5 races
+    $runner1->addRace(40); // Commented this line to avoid exceeding 5 races
 
     $runner2->addRace(15);
     $runner2->addRace(18);
     $runner2->addRace(22);
 } catch (Exception $e) {
-    echo "Error: " . $e->getMessage() . "\n";
+    echo "Error: " . $e->getMessage() . "<br>";
 }
 
 $competition->addRaceToRunner('A123', 12);
