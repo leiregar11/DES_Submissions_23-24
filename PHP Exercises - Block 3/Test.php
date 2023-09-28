@@ -1,5 +1,6 @@
 <?php
-
+include "Runner.php";
+include "Competition.php;"
 $competition = new Competition();
 
 $runner1 = new Runner('Alice', 'A123');
