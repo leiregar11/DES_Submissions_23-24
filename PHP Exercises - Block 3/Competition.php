@@ -13,10 +13,14 @@ class Competition{
     }
 
     public function addRaceToRunner($code, $time) {
+        try {
         if (array_key_exists($code, $this->runners)) {
             $runner = $this->runners[$code];
             $runner->addRace($time);
         }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
     }
 
     public function getAvrFirstRace() {
