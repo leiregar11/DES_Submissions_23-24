@@ -80,11 +80,10 @@
             }
         }
         public function updateOrDeleteFilm($film){
-            $ISAN=$film->getIsan();
-            if($film->getName()!="" || $film->getYear()!="" || $film->getPunctuation()!=""){
-                $this->films[$ISAN][]=$film;
-            }else{
-                unset($this->films[$ISAN]);
+            $ISAN = $film->getIsan();
+             unset($this->films[$ISAN]);
+            if ($film->getName() != "" && $film->getYear() != "" && $film->getPunctuation() != "") {
+                $this->films[$ISAN][] = $film; // Actualizar el valor de la clave ISAN
             }
         }
         public function printByName($name){
