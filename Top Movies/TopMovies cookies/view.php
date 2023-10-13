@@ -9,33 +9,52 @@
 <?php include "movies.php"; ?>
 
 <div class="showInfo">
-   
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>ISAN</th>
+            <th>Year</th>
+            <th>Punctuation</th>
+        </tr>
         <?php
 
         try{
             $topMovies = new TopMovies("");
             if (isset($_POST["hidden"])){
                 $topMovies = new TopMovies($_POST["hidden"]);
-                if (isset($_POST["name"]) || isset($_POST["isan"])) {
+                if (isset($_POST["name"]) && isset($_POST["isan"])) {
                     // Crear una nueva película con los datos del formulario y controlarla
                     $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
-                    
                     $topMovies->manager($newMovie);
                 } else {
                     echo "Missing data, make sure that at least the name or the ISAN are entered.";
                 }
             }
-            else{
-                echo "no esntra al if";
-            }
         }catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
         
+
+
+        if(isset($topMovies)&& $topMovies!="") {
+            $cont = 0;
+            foreach ($topMovies as $movies) {
+                    $cont++;
+                    if ($cont % 2 == 0) {
+                        echo "<tr style='background-color: lightblue;'>";
+                    } else {
+                        echo "<tr>";
+                    }
+                    echo $movies->printFilms();
+                    echo "</tr>";
+                
+            }
+        }
         ?>
+    </table>
 </div>
     <div class="enterInfo">
-    <form method="POST" action="view.php">
+    <form method="get" action="view.php">
         <label>Name: <input type="text" name="name"></label><br>
         <label>ISAN: <input type="text" name="isan"></label><br>
         <label>Year: <input type="text" name="year"></label><br>
@@ -51,6 +70,7 @@
         </label><br>
         <input type="submit" name="send" value="send">
         <input type="hidden" name="hidden" value="<?php echo $topMovies->getFilms(); ?>">
+        
         
     </form>
 </div>

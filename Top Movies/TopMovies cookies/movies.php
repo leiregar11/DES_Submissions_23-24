@@ -1,4 +1,3 @@
-<pre>
 <?php
     class Movie{
         private $name;
@@ -7,7 +6,7 @@
         private $punctuation;
         
         public function __construct($name,$isan,$year,$punctuation){
-            echo "public function __construct(name,isan,year,punctuation){";
+            // echo "public function __construct(name,isan,year,punctuation){";
             $this->name=$name;
             $this->isan=$isan;
             $this->year=$year;
@@ -30,6 +29,10 @@
             // echo "public function getPunctuation(){";
             return $this->punctuation;
         }
+        public function printTable(){
+            // echo "public function __toString(){";
+            return "<td> ".($this->name)."</td> <td> ".($this->isan)."</td><td> ".($this->year)."</td><td> ".($this->punctuation)."</td>";
+        }
         public function __toString(){
             return ($this->name)."&&".($this->isan)."&&".($this->year)."&&".($this->punctuation);
         }
@@ -38,17 +41,15 @@
     class TopMovies{
         private $films=[];
         public function __construct($movies=""){
-            if ($movies != "") {
-                $moviesStr = explode("||", $movies);
-                foreach ($moviesStr as $movie) {
-                    $movieInfo = explode("&&", $movie);
-                    $nM = new Movie($movieInfo[0], $movieInfo[1], $movieInfo[2], $movieInfo[3]);
-                    if (!empty($movieInfo[1])) {
-                        $this->films[$movieInfo[1]][] = $nM;
-                    } 
+            if($movies != ""){
+                $moviesStr=explode("||",$movies);
+                foreach($moviesStr as $movie){
+                    $movieInfo=explode("&&", $movie);
+                    $nM= new Movie ($movieInfo[0],$movieInfo[1],$movieInfo[2],$movieInfo[3]);
+                    $this->films[$movieInfo[1]]=$nm;
                 }
+            }
         }
-    }
         ////////////////////////////////////////////////////////////////
 
         public function manager($film) {
@@ -58,8 +59,7 @@
                 // echo $isan;
                 if (!array_key_exists($isan, $this->films)) {
                     $this->addFilm($film, $isan);
-                } 
-                else {
+                } else {
                     $this->updateOrDeleteFilm($film, $isan);
                 }
             } else {
@@ -97,28 +97,27 @@
         }
 
         public function getFilms(){
-            // echo "a";
-
             $str = "";
             if (!empty($this->films)) {
                 $keys = array_keys($this->films);
                 $lastKey = end($keys);
-                foreach ($this->films as $key =>$movies) {
-                 foreach ($movies as $movie ) {
-                    $str .= $movie->__toString();
-                 }
-                 
+                // echo "antes del for $str";
+                foreach ($this->films as $key => $movie) {
+                // echo "antes la cadena $str";
+                // $str .= $movie->__toString();
+                $str .= "hola";
+                $str += "hola2";
+                // // echo "despes la cadena $str";
                 if ($key !== $lastKey) {
+                // // echo "en el if $str";
 
+                        // $str .= "||";
                         $str .= "||";
                     }
                 }
-            }else{
-                $str="a";
+                // echo "despues del for $str";
             }
             return $str;
         }
         
 }
-?>
-</pre>
