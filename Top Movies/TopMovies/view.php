@@ -18,15 +18,21 @@
                 $topMovies = new TopMovies($_POST["hidden"]);
                 if (isset($_POST["name"]) || isset($_POST["isan"])) {
                     // Crear una nueva película con los datos del formulario y controlarla
-                    $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
                     
-                    $topMovies->manager($newMovie);
+                    if (empty($_POST["isan"])) {
+                        $topMovies->printByName($_POST["name"]);
+                    } else {
+                        $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
+                        $topMovies->manager($newMovie);
+                        $topMovies->printMovies();
+                    }
                 } else {
+                    
                     echo "Missing data, make sure that at least the name or the ISAN are entered.";
                 }
             }
             else{
-                echo "no esntra al if";
+                echo "no entra al if";
             }
         }catch (Exception $e) {
             echo "Error: " . $e->getMessage();

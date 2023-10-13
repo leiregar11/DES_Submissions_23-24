@@ -7,7 +7,7 @@
         private $punctuation;
         
         public function __construct($name,$isan,$year,$punctuation){
-            echo "public function __construct(name,isan,year,punctuation){";
+            // echo "public function __construct(name,isan,year,punctuation){";
             $this->name=$name;
             $this->isan=$isan;
             $this->year=$year;
@@ -62,6 +62,7 @@
                 else {
                     $this->updateOrDeleteFilm($film, $isan);
                 }
+                
             } else {
                 throw new Exception("The ISAN must have 8 digits.");
             }
@@ -86,14 +87,45 @@
                 unset($this->films[$ISAN]);
             }
         }
-        public function printFilms($name){
-            foreach ($this->films as $film ) {
-                if (strcasecmp($name, $film->getName()) === 0) {
-                    // echo $film->__toString();
-                } else {
-                    echo "La palabra '$palabraBuscada' no está en el string.";
+        public function printByName($name){
+            $view = "<ul>";
+                foreach ($this->films as $key =>$movies) {
+                    
+                    foreach ($movies as $movie ) {
+                        
+                        $name = preg_quote($name, '/');
+                        $filtredName = '/' . $name . '/i';
+                        if (preg_match($filtredName, $movie->getName())) {
+                            $view .= "<li>";
+                    $view .= " \"" . ($movie->getName()) . "\" from " . ($movie->getYear());
+                 $view .= "</li>";
                 }
+               
+                    }
+                
+                
+               
             }
+            $view .= "</ul>";
+        
+            echo $view;
+        }
+        
+        public function printMovies(){
+            $view = "<ul>";
+            foreach ($this->films as $key =>$movies) {
+                $view .= "<li>";
+                foreach ($movies as $movie ) {
+                $view .= " \"" . ($movie->getName()) . "\" from " . ($movie->getYear());
+            
+                }
+            
+            
+            $view .= "</li>";
+        }
+            $view .= "</ul>";
+        
+            echo $view;
         }
 
         public function getFilms(){
