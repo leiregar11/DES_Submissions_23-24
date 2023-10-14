@@ -136,10 +136,10 @@
                 $keys = array_keys($this->films);
                 $lastKey = end($keys);
                 foreach ($this->films as $key =>$movies) {
-                 foreach ($movies as $movie ) {
+                    foreach ($movies as $movie ) {
                     $str .= $movie->__toString();
-                 }
-                 
+                    }
+                
                 if ($key !== $lastKey) {
 
                         $str .= "||";

@@ -10,35 +10,36 @@
 
 <div class="showInfo">
    
-        <?php
-
-        try{
+    <?php
+        try {
             $topMovies = new TopMovies("");
-            if (isset($_POST["hidden"])){
-                $topMovies = new TopMovies($_POST["hidden"]);
-                if (isset($_POST["name"]) || isset($_POST["isan"])) {
-                    // Crear una nueva película con los datos del formulario y controlarla
-                    
-                    if (empty($_POST["isan"])) {
-                        $topMovies->printByName($_POST["name"]);
-                    } else {
-                        $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
-                        $topMovies->manager($newMovie);
-                        $topMovies->printMovies();
-                    }
+            
+            if (isset($_COOKIE["movies"])) {
+                $topMovies = new TopMovies($_COOKIE["movies"]);
+            }
+            
+            if (isset($_POST["name"]) || isset($_POST["isan"])) {
+                // Crear una nueva película con los datos del formulario y controlarla
+
+                if (empty($_POST["isan"])) {
+                    $topMovies->printByName($_POST["name"]);
                 } else {
-                    
-                    echo "Missing data, make sure that at least the name or the ISAN are entered.";
+                    $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
+                    $topMovies->manager($newMovie);
+                    $topMovies->printMovies();
                 }
+                
+                // Configurar la cookie después de realizar las operaciones
+                $cookieValue = $topMovies->getFilms(); // Obtener la información a guardar en la cookie
+                setcookie("movies", $cookieValue, time() + 3600); // Establecer la cookie con un nombre, valor y tiempo de expiración
+            } else {
+                echo "Missing data, make sure that at least the name or the ISAN are entered.";
             }
-            else{
-                echo "no entra al if";
-            }
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
-        
-        ?>
+    ?>
+
 </div>
     <div class="enterInfo">
     <form method="POST" action="view.php">
@@ -56,7 +57,6 @@
             </select>
         </label><br>
         <input type="submit" name="send" value="send">
-        <input type="hidden" name="hidden" value="<?php echo $topMovies->getFilms(); ?>">
         
     </form>
 </div>
