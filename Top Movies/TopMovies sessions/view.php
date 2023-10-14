@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Movies - Leire</title>
 </head>
-<body>
+<body >
 <?php include "movies.php"; ?>
 
 <div class="showInfo">
-   
-    <?php
-    
-        try {
-            $topMovies = new TopMovies("");
-            
-            if (isset($_COOKIE["movies"])) {
-                $topMovies = new TopMovies($_COOKIE["movies"]);
-            }
-            
-            if (isset($_POST["name"]) || isset($_POST["isan"])) {
 
+    <?php
+    if (isset($_GET['reset'])) {
+        // Si se pasa un parámetro "reset" en la URL, destruye la sesión actual
+        session_destroy();
+        session_start(); // Inicia una nueva sesión
+    } 
+
+    try {
+        $topMovies = new TopMovies("");
+        
+        if (isset($_SESSION["movies"])) {
+            $topMovies = new TopMovies($_SESSION["movies"]);
+        }
+        
+            if (isset($_POST["name"]) || isset($_POST["isan"])) {
+    
                 if (empty($_POST["isan"])) {
                     $topMovies->printByName($_POST["name"]);
                 } else {
@@ -28,15 +33,15 @@
                     $topMovies->manager($newMovie);
                     $topMovies->printMovies();
                 }
-                
-                $cookieValue = $topMovies->getFilms(); 
-                setcookie("movies", $cookieValue, time() + 3600); 
-            } else {
+    
+                $_SESSION["movies"] = $topMovies->getFilms();
+            } else{
                 echo "Missing data, make sure that at least the name or the ISAN are entered.";
             }
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
+        
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
     ?>
 
 </div>

@@ -27,7 +27,6 @@
                         echo $topMovies->printMovies();
                     }
                 } else {
-                    
                     echo "Missing data, make sure that at least the name or the ISAN are entered.";
                 }
             }
