@@ -53,7 +53,8 @@
 
         public function manager($film) {
             // echo "public function manager(film) {";
-            $isan = $film->getIsan();
+            $isan = $
+            // echo "a";film->getIsan();
             if (strlen($isan) == 8) {
                 // echo $isan;
                 if (!array_key_exists($isan, $this->films)) {
@@ -125,7 +126,6 @@
         }
 
         public function getFilms(){
-            // echo "a";
 
             $str = "";
             if (!empty($this->films)) {

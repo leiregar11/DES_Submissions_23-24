@@ -6,10 +6,16 @@
     <title>Top Movies - Leire</title>
 </head>
 <body>
-<?php include "movies.php"; ?>
+<?php include "movies.php"; 
+if (isset($_COOKIE["username"])) {
+    $username = $_COOKIE["username"];
+} else {
+    header("Location: index.php");
+    exit;
+}?>
 
 <div class="showInfo">
-   
+<h1><?php echo $_COOKIE['username']; ?> movies:</h1>
     <?php
     
         try {

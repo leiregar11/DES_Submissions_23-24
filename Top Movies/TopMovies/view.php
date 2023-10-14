@@ -6,10 +6,17 @@
     <title>Top Movies - Leire</title>
 </head>
 <body>
-<?php include "movies.php"; ?>
+<?php include "movies.php"; 
+if (isset($_POST["username"])) {
+    $username = $_POST["username"];
+} else {
+    header("Location: otra_pagina.php"); // Redirigir a otra página si no se proporciona un nombre de usuario
+    exit;
+}
+?>
 
 <div class="showInfo">
-   
+<h1><?php echo $_POST["username"] ?> movies:</h1>
         <?php
 
         try{

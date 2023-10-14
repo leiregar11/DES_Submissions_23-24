@@ -6,14 +6,23 @@
     <title>Top Movies - Leire</title>
 </head>
 <body >
-<?php include "movies.php"; ?>
+<?php 
+include "movies.php";
+session_start();
+
+    if (!isset($_SESSION["username"])) {
+        header("Location: index.php");
+        exit;
+    }
+    
+    $username = $_SESSION["username"];
+?>
 
 <div class="showInfo">
 
+    
+    <h1><?php echo $_SESSION['username']; ?> movies:</h1>
     <?php
-    if (isset($_GET['reset'])) {
-        session_start(); 
-    } 
 
     try {
         $topMovies = new TopMovies("");
