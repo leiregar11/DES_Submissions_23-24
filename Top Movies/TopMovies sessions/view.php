@@ -12,9 +12,7 @@
 
     <?php
     if (isset($_GET['reset'])) {
-        // Si se pasa un parámetro "reset" en la URL, destruye la sesión actual
-        session_destroy();
-        session_start(); // Inicia una nueva sesión
+        session_start(); 
     } 
 
     try {
