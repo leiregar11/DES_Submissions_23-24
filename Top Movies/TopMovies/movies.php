@@ -1,4 +1,4 @@
-<pre>
+
 <?php
     class Movie{
         private $name;
@@ -42,6 +42,7 @@
                 $moviesStr = explode("||", $movies);
                 foreach ($moviesStr as $movie) {
                     $movieInfo = explode("&&", $movie);
+                    print_r($movieInfo);
                     $nM = new Movie($movieInfo[0], $movieInfo[1], $movieInfo[2], $movieInfo[3]);
                     if (!empty($movieInfo[1])) {
                         $this->films[$movieInfo[1]][] = $nM;
@@ -144,12 +145,9 @@
                         $str .= "||";
                     }
                 }
-            }else{
-                $str="a";
             }
             return $str;
         }
         
 }
 ?>
-</pre>

@@ -20,20 +20,20 @@
                     // Crear una nueva película con los datos del formulario y controlarla
                     
                     if (empty($_POST["isan"])) {
-                        $topMovies->printByName($_POST["name"]);
+                        echo $topMovies->printByName($_POST["name"]);
                     } else {
                         $newMovie = new Movie($_POST["name"], $_POST["isan"], $_POST["year"], $_POST["punctuation"]);
                         $topMovies->manager($newMovie);
-                        $topMovies->printMovies();
+                        echo $topMovies->printMovies();
                     }
                 } else {
                     
                     echo "Missing data, make sure that at least the name or the ISAN are entered.";
                 }
             }
-            else{
-                echo "no entra al if";
-            }
+            // else{
+            //     echo "no entra al if";
+            // }
         }catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
