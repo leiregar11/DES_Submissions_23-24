@@ -24,7 +24,7 @@ class Runner{
 
     public function addRace($time) {
         if (count($this->races) >= 5) {
-            throw new Exception("Runner already has 5 races.<br>");
+            throw new Exception("Runner ".( $this->name)." already has 5 races.<br>");
         }
 
         if ($time < 5) {

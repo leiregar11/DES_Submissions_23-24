@@ -58,15 +58,33 @@ class Competition{
         return "Quickest runner: $faster<br>";
     }
 
+    // public function getSlowRunners() {
+    //     $runnersMore15s = [];
+
+    //     foreach ($this->runners as $runner) {
+    //         $slowRaces = array_filter($runner->getRaces(), function ($time) {
+    //             return $time > 15;
+    //         });
+
+    //         if (count($slowRaces) > 2) {
+    //             $runnersMore15s[] = $runner->getName();
+    //         }
+    //     }
+
+    //     return "Runners with more than 2 races > 15 seconds: " . implode(', ', $runnersMore15s) . "<br>";
+    // }
+
     public function getSlowRunners() {
         $runnersMore15s = [];
 
         foreach ($this->runners as $runner) {
-            $slowRaces = array_filter($runner->getRaces(), function ($time) {
-                return $time > 15;
-            });
-
-            if (count($slowRaces) > 2) {
+            $slowRaces=0;
+            foreach($runner->getRaces() as $race){
+                if($race>15){
+                    $slowRaces++;
+                }
+            }
+            if ($slowRaces > 2) {
                 $runnersMore15s[] = $runner->getName();
             }
         }
