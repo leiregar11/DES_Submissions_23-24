@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management</title>
+    <title>Leire | @yield('title', 'Home Page')</title>
 </head>
 <body>
 
@@ -19,7 +19,8 @@
     </header>
     <main>
         <!-- Yield content from child views -->
-        @yield('content')
+        @section('content')
+        @show
     </main>
 
 </body>
