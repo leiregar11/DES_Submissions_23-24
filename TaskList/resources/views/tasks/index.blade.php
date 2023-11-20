@@ -20,7 +20,7 @@
                     {{ $task->name }}
                     <!-- Form to delete the task -->
                     @include('partials.delete.partial', ['id' => $task->id])
-                </li>
+                </li> 
             @endforeach
         </ul>
     </section>
