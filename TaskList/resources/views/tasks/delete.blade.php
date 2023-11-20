@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Task List')
 @section('content')
 
 <section>
@@ -7,9 +7,8 @@
         <ul>
             @foreach ($tasks as $task)
                 <li>
-                    {{ $task->name }}
                     <!-- Form to delete the task -->
-                    @include('partials.delete', ['id' => $task->id])
+                    @include('partials.deleteButton', ['id' => $task->id])
                 </li> 
             @endforeach
         </ul>

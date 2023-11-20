@@ -9,9 +9,13 @@ class TaskController extends Controller
 {
     public function index(){
         $tasks=Task::all();
-        return view("tasks.index",["tasks"=>$tasks]);
+        return view("tasks.add",["tasks"=>$tasks]);
     }
 
+    public function showList(){
+        $tasks=Task::all();
+        return view("tasks.delete",["tasks"=>$tasks]);
+    }
     public function store(Request $request){
         $task=Task::create([
             'name'=>$request->get('name'),

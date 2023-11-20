@@ -17,6 +17,8 @@ use App\Http\Controllers\TaskController;
 Route::get('/', [TaskController::class, "index"])->name('home');
 
 Route::post('/task', [TaskController::class, "store"])->name('store');
+Route::post('/task/search', [TaskController::class, "search"])->name('search');
 
+Route::get('/task/list', [TaskController::class, "showList"])->name('showList');
 
 Route::delete('/task/{id}', [TaskController::class, 'destroy'])->name('delete');
