@@ -16,6 +16,15 @@ class TaskController extends Controller
         $tasks=Task::all();
         return view("tasks.delete",["tasks"=>$tasks]);
     }
+    
+    public function search(Request $req){
+        $searchby = $req->input('name');
+
+    // Using Eloquent to search for records
+    $tasks = Task::where('name', 'LIKE', "%$searchby%")->get();
+        return view("tasks.search",["tasks"=>$tasks]);
+    }
+    
     public function store(Request $request){
         $task=Task::create([
             'name'=>$request->get('name'),
