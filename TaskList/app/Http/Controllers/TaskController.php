@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index(){
         $tasks=Task::all();
-        return view("tasks.add",["tasks"=>$tasks]);
+        return view("tasks.add");
     }
 
     public function showList(){
@@ -26,6 +26,12 @@ class TaskController extends Controller
     }
     
     public function store(Request $request){
+        $request->validate([
+            'name'=>'required|string',
+        ],
+        ['name.required'=>'Name is empty',]
+        );
+        
         $task=Task::create([
             'name'=>$request->get('name'),
         ]);
