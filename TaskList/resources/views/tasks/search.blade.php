@@ -13,18 +13,11 @@
     </section>
     <section>
         <!-- List to display all tasks -->
-        @if($tasks->isEmpty())
-            <p>No results found for your search.</p>
-        @else
+        
         <ul>
-            @foreach ($tasks as $task)
-                <li>
-                    
-                    @include('partials.deleteButton', ['id' => $task->id])
-                </li> 
-            @endforeach
+            @each('partials.deleteButton',$tasks,'task')
+            
         </ul>
-        @endif
     </section>
    
 

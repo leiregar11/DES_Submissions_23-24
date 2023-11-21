@@ -43,7 +43,7 @@ class TaskController extends Controller
         $task->delete();
 
         // Optionally, you can redirect to the task list or return a response
-        return redirect()->route('home');
+        return redirect()->back();
 
 
     }
