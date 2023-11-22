@@ -14,9 +14,9 @@
     <section>
         <!-- List to display all tasks -->
         <ul>
-            @foreach ($tasks as $task)
+            
             @each('partials.deleteButton',$tasks,'task','partials.empty-module')
-            @endforeach
+           
         </ul>
     </section>
    
