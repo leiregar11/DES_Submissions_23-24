@@ -15,10 +15,7 @@
         <!-- List to display all tasks -->
         <ul>
             @foreach ($tasks as $task)
-                <li>
-                    
-                    @include('partials.deleteButton', ['id' => $task->id])
-                </li> 
+            @each('partials.deleteButton',$tasks,'task','partials.empty-module')
             @endforeach
         </ul>
     </section>

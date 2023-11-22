@@ -15,7 +15,7 @@
         <!-- List to display all tasks -->
         
         <ul>
-            @each('partials.deleteButton',$tasks,'task')
+            @each('partials.deleteButton',$tasks,'task','partials.empty-module')
             
         </ul>
     </section>
