@@ -9,12 +9,16 @@ class TaskController extends Controller
 {
     public function index(){
         $tasks=Task::all();
-        return view("tasks.add");
+        return view("tasks.index",["tasks"=>$tasks]);
+    }
+
+    public function addTask(){
+        return view("tasks.add",["texto"=>""]);
     }
 
     public function showList(){
         $tasks=Task::all();
-        return view("tasks.delete",["tasks"=>$tasks]);
+        return view("tasks.list",["tasks"=>$tasks]);
     }
     
     public function search(Request $req){
@@ -26,17 +30,19 @@ class TaskController extends Controller
     }
     
     public function store(Request $request){
-        $request->validate([
-            'name'=>'required|string',
-        ],
-        ['name.required'=>'Name is empty',]
-        );
-        
-        $task=Task::create([
+        $taskName=$request->get("name");
+        if(empty($taskName)){
+            $texto="You cannot enter an empty task.";
+            return view("tasks.add",["texto"=>$texto]);
+        }else{
+            $task=Task::create([
             'name'=>$request->get('name'),
-        ]);
+            ]);
+        }
         
-        return redirect()->route('home');
+        
+        
+        return view("tasks.add",["texto"=>""]);
 
     }
 
