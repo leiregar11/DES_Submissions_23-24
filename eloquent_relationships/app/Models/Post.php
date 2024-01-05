@@ -11,10 +11,11 @@ class Post extends Model
     protected $fillable = [
         'post',
     ];
-    public function users(){
-        return $this->belongsTo('App\Models\User');
+    public function user(){
+        return $this->belongsTo(User::class);
+
     }
-    public function subjects(){
+    public function subject(){
         return $this->belongsToMany('App\Models\Subject');
     }
 }

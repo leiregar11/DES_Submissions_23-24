@@ -58,7 +58,8 @@ class AddressController extends Controller
 
         $address=Address::findOrFail($id);
         $users=User::all();
-      return view("addressViews.assingAddress",["address"=>$address, "users"=>$users]);
+        $subjects=Subject::all();
+      return view("addressViews.assingAddress",["address"=>$address, "users"=>$users, "subjects"=>$subjects]);
 
   }
 

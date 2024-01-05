@@ -39,4 +39,23 @@ Route::prefix('address')->group(function () {
 
 });
 
+Route::prefix('post')->group(function () {
+    Route::get('/', [PostController::class, 'index'])->name('post');
+    Route::post('/create', [PostController::class, 'create'])->name('post.create');
+    Route::delete('/{id}', [PostController::class, 'destroy'])->name('post.delete');
+    Route::get('/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/{id}/update', [PostController::class, 'update'])->name('post.update');
+    // Route::post('/assing/{post_id}', [PostController::class, 'assinguser'])->name('post.assing');
+    // Route::get('/assingAddres/{id}', [PostController::class, 'showAssing'])->name('post.showAssing');
+
+});
+Route::prefix('subject')->group(function () {
+    Route::get('/', [SubjectController::class, 'index'])->name('subject');
+    Route::post('/create', [SubjectController::class, 'create'])->name('subject.create');
+    Route::delete('/{id}', [SubjectController::class, 'destroy'])->name('subject.delete');
+    Route::get('/{id}/edit', [SubjectController::class, 'edit'])->name('subject.edit');
+    Route::post('/{id}/update', [SubjectController::class, 'update'])->name('subject.update');
+    
+
+});
 
