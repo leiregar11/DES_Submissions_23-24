@@ -25,7 +25,7 @@
                  @method('DELETE')   
                 <button type="submit">Delete</button>
                 </form>
-                <form action="{{ route('user.edit', $user->id) }}" method="GET">
+                <form action="{{ route('user.edit', $user->id) }}" method="get">
                             @csrf
                             <button type="submit">Editar</button>
                         </form>

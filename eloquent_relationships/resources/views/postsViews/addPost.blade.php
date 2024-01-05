@@ -24,7 +24,11 @@
         </select>
     <h3 for="contenido">Add the content of the post:</h3>
     <textarea id="post" name="post" cols="40" rows="5" required></textarea>
-
+        <h3>Select the subjects of the post</h3>
+        @foreach ($subjects as $subject)
+            <input type="checkbox" name="subjects[]" value="{{$subject->id}}" id="subjects">
+            <label for="{{$subject->id}}">{{$subject->subject}}</label>
+        @endforeach
         <button type="submit">Create post</button>
     </form>
 
@@ -34,6 +38,7 @@
             
             <li>
                 <p>Owner of the post: {{$post->user->name}}</p>
+                <p>Subjects of the post: {{$post->user->name}}</p>
                 <p>{{$post->post}}</p>
             
     

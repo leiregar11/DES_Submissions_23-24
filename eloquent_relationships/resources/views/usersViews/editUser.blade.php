@@ -7,7 +7,7 @@
 
     <form action="{{ route('user.update', $user->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        @method('POST')
 
         <label for="name">Name:</label>
         <input type="text" name="name" value="{{ $user->name }}" required>

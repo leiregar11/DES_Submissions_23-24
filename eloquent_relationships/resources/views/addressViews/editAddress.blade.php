@@ -9,7 +9,8 @@
 
     <form action="{{ route('address.update', $address->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        @method('POST')
+
 
         <label for="name">Addres:</label>
         <input type="text" name="address" value="{{ $address->address }}" required>

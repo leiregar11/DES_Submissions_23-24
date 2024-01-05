@@ -27,7 +27,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('editUser', compact('user'));
+        return view('usersViews.editUser', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -39,6 +39,10 @@ class UserController extends Controller
 
         return redirect()->route('user');
 
+    }
+    public function show($user_id){
+        $posts= Post::where('user_id', $user_id)->orderBy('name')->get();
+        return $posts;
     }
 
     public function destroy($id)

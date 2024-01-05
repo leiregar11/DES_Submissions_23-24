@@ -37,6 +37,7 @@ class AddressController extends Controller
         $addresses = Address::findOrFail($id);
         $addresses->update([
             'name' => $request->input('name'),
+            'user_id' => $request->input('userId'),
         ]);
 
         return redirect()->route('address');

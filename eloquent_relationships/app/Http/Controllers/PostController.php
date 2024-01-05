@@ -14,7 +14,8 @@ class PostController extends Controller
 
         $posts=Post::all();
         $users=User::all();
-        return view("postsViews.addPost",["posts"=>$posts, "users"=>$users]);
+        $subjects=Subject::all();
+        return view("postsViews.addPost",["posts"=>$posts, "users"=>$users, 'subjects'=>$subjects]);
     }
     public function create(Request $request)
     {
@@ -26,11 +27,37 @@ class PostController extends Controller
         $post->post=$request->post;
         $post->user_id=$request->userId;
         $post->save();
-
+        
+        if ($request->has('subjects')) {
+            $subjects = is_array($request->subjects) ? $request->subjects : explode(',', $request->subjects);
+        }
+        foreach ($subjects as $subject) {
+            $post->subjects()->attach($subject);
+        }
         
         return redirect()->route('post');
     }
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('postsViews.editPost', compact('post'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update([
+            'post' => $request->post,
+        ]);
+
+        return redirect()->route('user');
+
+    }
+
+    public function show(){
+        $posts= Post::latest('created_at')->limit(12)->get();
+        return $posts;
+    }
     public function destroy($id)
     {
         $post = Post::findOrFail($id);

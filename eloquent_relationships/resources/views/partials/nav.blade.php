@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('post') }}">Posts</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('subject') }}">Subjects</a>
+                </li>
             </ul>
     </div>
 </nav>
