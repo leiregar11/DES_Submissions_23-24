@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index(){
 
           $users=User::all();
-        return view("addUser",["users"=>$users]);
+        return view("usersViews.addUser",["users"=>$users]);
     }
 
     public function create(Request $request)
@@ -24,6 +24,22 @@ class UserController extends Controller
         return redirect()->route('user');
     }
 
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('editUser', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update([
+            'name' => $request->input('name'),
+        ]);
+
+        return redirect()->route('user');
+
+    }
 
     public function destroy($id)
     {

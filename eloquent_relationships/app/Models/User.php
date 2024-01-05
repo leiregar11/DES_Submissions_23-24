@@ -21,10 +21,10 @@ class User extends Authenticatable
         'name',
     ];
 public function address(){
-    return $this->hasOne('Appp/Models/Address');
+    return $this->hasOne('App\Models\Address');
 }
 public function posts(){
-    return $this->hasMany('Appp/Models/Post');
+    return $this->hasMany('App\Models\Post');
 
 }
 }

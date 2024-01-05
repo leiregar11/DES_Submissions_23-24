@@ -12,9 +12,9 @@ class Post extends Model
         'post',
     ];
     public function users(){
-        return $this->belongsTo('App/Models/User');
+        return $this->belongsTo('App\Models\User');
     }
     public function subjects(){
-        return $this->belongsToMany('App/Models/Subject');
+        return $this->belongsToMany('App\Models\Subject');
     }
 }
