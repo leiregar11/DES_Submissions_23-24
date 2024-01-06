@@ -25,6 +25,7 @@
     <h3 for="contenido">Add the content of the post:</h3>
     <textarea id="post" name="post" cols="40" rows="5" required></textarea>
         <h3>Select the subjects of the post</h3>
+        <br>
         @foreach ($subjects as $subject)
             <input type="checkbox" name="subjects[]" value="{{$subject->id}}" id="subjects">
             <label for="{{$subject->id}}">{{$subject->subject}}</label>
@@ -38,7 +39,17 @@
             
             <li>
                 <p>Owner of the post: {{$post->user->name}}</p>
-                <p>Subjects of the post: {{$post->user->name}}</p>
+                <p>Subjects of the post: </p>
+                @if ($post->subject->count() > 0)
+                    <ul>
+                        @foreach ($post->subject as $subject)
+                            <li>{{ $subject->subject }}</li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No subjects are related to this post.</p>
+                @endif
+
                 <p>{{$post->post}}</p>
             
     

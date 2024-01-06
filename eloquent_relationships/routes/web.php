@@ -59,8 +59,8 @@ Route::prefix('subject')->group(function () {
 
 });
 
-Route::prefix('/api/post')->group(function(){
+Route::prefix('/api/posts')->group(function(){
     Route::get('/recent', [PostController::class, 'show'])->name('api.show');
-    Route::get('/{usuarioId}}', [UserController::class, 'show'])->name('api.show');
+    Route::get('/{usuarioId}', [UserController::class, 'show'])->name('api.show');
 
 });

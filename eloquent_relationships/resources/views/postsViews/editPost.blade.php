@@ -1,8 +1,14 @@
 @extends('main')
-@section('title', 'Edit User')
+@section('title', 'Edit Post')
 @section('content')
 
-<div>
+<style>
+    /* Agrega estilos CSS para deshabilitar el redimensionamiento del textarea */
+    #post {
+        resize: none;
+    }
+</style>
+
     <h1>Edit post</h1>
 
     <form action="{{ route('post.update', $post->id) }}" method="POST">
@@ -11,8 +17,7 @@
 
 
         <label for="post">Edit your post:</label>
-        <input type="text" name="post" value="{{ $post->post }}" required>
-        <textarea id="post" name="post" cols="40" rows="5" value="{{ $post->post }}" required></textarea>
+        <input type="text" name="post"  cols="40" rows="5" value="{{ $post->post }}" required>
 
 
         <button type="submit">Update</button>

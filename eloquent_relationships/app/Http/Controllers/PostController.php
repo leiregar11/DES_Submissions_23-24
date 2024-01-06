@@ -30,10 +30,13 @@ class PostController extends Controller
         
         if ($request->has('subjects')) {
             $subjects = is_array($request->subjects) ? $request->subjects : explode(',', $request->subjects);
+            foreach ($subjects as $subject) {
+                $post->subject()->attach($subject);
+            }
         }
-        foreach ($subjects as $subject) {
-            $post->subjects()->attach($subject);
-        }
+
+     
+        
         
         return redirect()->route('post');
     }

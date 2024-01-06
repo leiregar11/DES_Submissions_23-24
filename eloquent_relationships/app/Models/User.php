@@ -19,7 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'age',
+        'email',
+        'date_of_birth',
+        'gender'
     ];
+
 public function address(){
     return $this->hasOne('App\Models\Address');
 }

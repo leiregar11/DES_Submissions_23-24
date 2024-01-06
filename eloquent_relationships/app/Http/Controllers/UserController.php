@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
+
 
 
 class UserController extends Controller
@@ -15,14 +17,26 @@ class UserController extends Controller
     }
 
     public function create(Request $request)
-    {
-        
-        User::create([
-            'name' => $request->name,
-        ]);
+{
+    // Validación de datos
+    $request->validate([
+        'name' => 'required|string',
+        'age' => 'required|integer',
+        'email' => 'required|email',
+        'date_of_birth' => 'required|date',
+        'gender' => 'required|in:male,female,other',
+    ]);
 
-        return redirect()->route('user');
-    }
+    User::create([
+        'name' => $request->name,
+        'age' => $request->age,
+        'email' => $request->email,
+        'date_of_birth' => $request->date_of_birth,
+        'gender' => $request->gender,
+    ]);
+
+    return redirect()->route('user'); 
+}
 
     public function edit($id)
     {
@@ -41,7 +55,7 @@ class UserController extends Controller
 
     }
     public function show($user_id){
-        $posts= Post::where('user_id', $user_id)->orderBy('name')->get();
+        $posts= Post::where('user_id', $user_id)->orderBy('post')->get();
         return $posts;
     }
 
